@@ -1,0 +1,19 @@
+
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+
+
+firstNode: Node = Node('')
+secondNode: Node = Node(3)
+thirdNode: Node = Node(4)
+
+firstNode.left = secondNode
+firstNode.right = thirdNode
+
+firstNode: Node = Node(firstNode.left + firstNode.right)
+print(firstNode.value)

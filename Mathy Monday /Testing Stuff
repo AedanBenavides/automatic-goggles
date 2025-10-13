@@ -1,0 +1,36 @@
+import random
+Operators: list = ['+', '-', '*', '/']                  
+Numbers: list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+Variables: list = ['x', 'y', 'z']
+Functions: list = ['sin', 'cos', 'tan', 'log', 'exp']
+
+'''
+The lists above contatin the parts of the expressions
+that will be randomly combined to form valid mathematical expressions.
+'''
+
+
+Terminals: list = [Variables, Numbers]
+Non_Terminals: list = [Operators, Functions]
+
+'''
+These two lists categorize the elements that terminate the function (Terminals)
+and those that continue the expression (Non_Terminals).
+'''
+
+def generate_expression(depth: int) -> str:
+    if depth == 0:
+        terminal = random.choice(random.choice(Terminals))
+        return str(terminal)
+    else:
+        if random.random() < 0.5:
+            operator = random.choice(Operators)
+            left_expr = generate_expression(depth - 1)
+            right_expr = generate_expression(depth - 1)
+            return f'({left_expr} {operator} {right_expr})'
+        else:
+            function = random.choice(Functions)
+            arg_expr = generate_expression(depth - 1)
+            return f'{function}({arg_expr})'
+
+print(generate_expression(2))
